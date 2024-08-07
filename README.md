@@ -38,4 +38,5 @@
 # 打开终端后点击下面的cd xxx/xxx/xxx来进入储存模组文件和脚本的文件夹。
 ## 如果提示消失，请重新退出终端重新进入会再次提示。
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/6.jpg)
+# 打开后输入ls，会显示当前打开的文件夹下的文件和目录，来确认你打开的文件夹是正确的。
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/7.jpg)
