@@ -43,3 +43,4 @@
 # 输入sh 脚本的名字.sh 回车后则开始运行脚本，根据脚本提示完成相应填写
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/8.jpg)
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/9.jpg)
+~~恼 这东西终于写出来了，看不看的懂我不保证~~
