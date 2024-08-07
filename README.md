@@ -33,3 +33,5 @@
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/3.jpg)
 # 并打开mt管理器的右上角3个点，打开终端。
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/4.jpg)
+# 打开终端后会提示按照扩展包点击确定，安装完成后退出终端重新打开
+![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/5.jpg)
