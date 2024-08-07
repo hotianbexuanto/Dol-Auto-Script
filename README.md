@@ -27,3 +27,8 @@
 # 2.在另一边找到模组/美化文件的位置
 
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/2.jpg)
+
+# 3.移动脚本到模组/美化的文件内
+
+![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/3.jpg)
+![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/4.jpg)
