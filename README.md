@@ -40,3 +40,5 @@
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/6.jpg)
 # 打开后输入ls，会显示当前打开的文件夹下的文件和目录，来确认你打开的文件夹是正确的。
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/7.jpg)
+# 输入sh 脚本的名字.sh 回车后则开始运行脚本，根据脚本提示完成相应填写
+![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/8.jpg)
