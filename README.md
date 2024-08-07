@@ -31,4 +31,5 @@
 # 3.移动脚本到模组/美化的文件内
 
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/3.jpg)
+# 并打开mt管理器的右上角3个点，打开终端。
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/4.jpg)
