@@ -1,19 +1,11 @@
 #!/bin/bash
 
-# 定义源目录和输出文件
 SOURCE_DIR="img"
 OUTPUT_FILE="boot.json"
 
-# 提示用户输入名称
 read -p "请输入名称: " NAME
-
-# 提示用户输入模组版本，并给出参考示例
 read -p "请输入模组版本 (参考 0.0.1): " VERSION
-
-# 提示用户输入支持的 ModLoader 版本，并给出参考示例
 read -p "请输入支持的 ModLoader 版本 (参考 =1.2.3, <2.0.0, >1.0.0, ^1.2.3): " DEP_VERSION
-
-# 提示用户输入游戏版本，并给出参考示例
 read -p "请输入游戏版本 (可选, 参考 0.0.0.1, 如果不输入则不在 JSON 中添加此字段): " GAME_VERSION
 
 # 创建临时文件来保存目录结构
@@ -90,8 +82,6 @@ fi
 echo '  ]' >> "$OUTPUT_FILE"
 echo "}" >> "$OUTPUT_FILE"
 
-# 删除临时文件
 rm "$TEMP_FILE"
 
-# 打印完成信息
 echo "目录结构已保存到 $OUTPUT_FILE"
