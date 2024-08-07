@@ -20,6 +20,6 @@
 
 >* 演示所使用的为mt管理器终端，方便快捷移动文件。
 
-># 1.找到脚本下载位置
+# 1.找到脚本下载位置
 
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/1.jpg)
