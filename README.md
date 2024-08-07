@@ -22,4 +22,4 @@
 
 > 1.找到脚本下载位置
 
-![imge](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/tree/main/picture/1.jpg)
+![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/1.jpg)
