@@ -12,7 +12,7 @@ crc32() {
     crc=$(( (crc >> 8) ^ crc_table[((crc ^ data) & 0xff)] ))
   done < "$file"
 
-  printf "%08x" $((crc ^ 0xffffffff & 0xffffffff))
+  printf "%08x" $((crc ^ 0xffffffff))
 }
 
 # 生成CRC32表
@@ -31,8 +31,7 @@ generate_crc_table() {
   done
 }
 
-# 使用python的zlib库压缩文件
-#MT管理器无法使用
+# 使用zlib压缩文件
 # compress_file() {
 #   local file=$1
 #   local compressed_file=$2
@@ -47,35 +46,35 @@ generate_crc_table() {
 # }
 
 # 简单的文件压缩函数（RLE 压缩）
-compress_file() {
-  local file=$1
-  local compressed_file=$2
+# compress_file() {
+#   local file=$1
+#   local compressed_file=$2
 
-  # 使用简单的RLE算法进行压缩
-  awk '{
-    for (i=1; i<=length; i++) {
-      c = substr($0, i, 1)
-      if (c == prev) {
-        count++
-      } else {
-        if (count > 1) {
-          printf "%d%s", count, prev >> compressed_file
-        } else if (count == 1) {
-          printf "%s", prev >> compressed_file
-        }
-        prev = c
-        count = 1
-      }
-    }
-  }
-  END {
-    if (count > 1) {
-      printf "%d%s", count, prev >> compressed_file
-    } else if (count == 1) {
-      printf "%s", prev >> compressed_file
-    }
-  }' "$file" > "$compressed_file"
-}
+#   # 使用简单的RLE算法进行压缩
+#   awk '{
+#     for (i=1; i<=length; i++) {
+#       c = substr($0, i, 1)
+#       if (c == prev) {
+#         count++
+#       } else {
+#         if (count > 1) {
+#           printf "%d%s", count, prev >> compressed_file
+#         } else if (count == 1) {
+#           printf "%s", prev >> compressed_file
+#         }
+#         prev = c
+#         count = 1
+#       }
+#     }
+#   }
+#   END {
+#     if (count > 1) {
+#       printf "%d%s", count, prev >> compressed_file
+#     } else if (count == 1) {
+#       printf "%s", prev >> compressed_file
+#     }
+#   }' "$file" > "$compressed_file"
+# }
 
 # 初始化CRC32表
 declare -A crc_table
@@ -103,11 +102,10 @@ fi
 
 # 处理每个文件
 for file in $files_to_compress; do
-  temp_compressed_file="$temp_dir/$(basename "$file").rle"
-  compress_file "$file" "$temp_compressed_file"
+  temp_compressed_file="$temp_dir/$(basename "$file").gz"
   
   # 使用gzip进行压缩
-  # gzip -c "$file" > "$temp_compressed_file"
+  gzip -c "$file" > "$temp_compressed_file"
 
   # 获取文件信息
   compressed_size=$(stat -c%s "$temp_compressed_file")
@@ -121,7 +119,7 @@ for file in $files_to_compress; do
     echo -ne '\x50\x4b\x03\x04'    # 本地文件头签名
     echo -ne '\x14\x00'            # 提取所需的版本（20）
     echo -ne '\x00\x00'            # 通用目的位标志
-    echo -ne '\x08\x00'            # 压缩方法（RLE压缩，非标准）
+    echo -ne '\x08\x00'            # 压缩方法（DEFLATE）
     echo -ne '\x00\x00\x00\x00'    # 最后修改时间和日期
     echo -ne "$(printf '%08x' "0x$crc32_value")"  # CRC-32
     echo -ne "$(printf '%08x' "$compressed_size")"  # 压缩大小
@@ -138,7 +136,7 @@ for file in $files_to_compress; do
     echo -ne '\x14\x00'            # 创建版本
     echo -ne '\x14\x00'            # 提取所需版本（20）
     echo -ne '\x00\x00'            # 通用目的位标志
-    echo -ne '\x08\x00'            # 压缩方法（RLE压缩，非标准）
+    echo -ne '\x08\x00'            # 压缩方法（DEFLATE）
     echo -ne '\x00\x00\x00\x00'    # 最后修改时间和日期
     echo -ne "$(printf '%08x' "0x$crc32_value")"  # CRC-32
     echo -ne "$(printf '%08x' "$compressed_size")"  # 压缩大小
