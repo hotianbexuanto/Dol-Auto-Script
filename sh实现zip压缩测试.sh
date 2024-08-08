@@ -31,6 +31,20 @@ generate_crc_table() {
   done
 }
 
+# 使用python的zlib库压缩文件
+# compress_file() {
+#   local file=$1
+#   local compressed_file=$2
+#   python3 - <<EOF
+# import zlib
+# with open("$file", "rb") as f:
+#     data = f.read()
+# compressed_data = zlib.compress(data)
+# with open("$compressed_file", "wb") as f:
+#     f.write(compressed_data)
+# EOF
+# }
+
 # 简单的文件压缩函数（RLE 压缩）
 compress_file() {
   local file=$1
@@ -90,6 +104,9 @@ fi
 for file in $files_to_compress; do
   temp_compressed_file="$temp_dir/$(basename "$file").rle"
   compress_file "$file" "$temp_compressed_file"
+  
+  # 使用gzip进行压缩
+  # gzip -c "$file" > "$temp_compressed_file"
 
   # 获取文件信息
   compressed_size=$(stat -c%s "$temp_compressed_file")
