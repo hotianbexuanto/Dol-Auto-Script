@@ -32,6 +32,7 @@ generate_crc_table() {
 }
 
 # 使用python的zlib库压缩文件
+#MT管理器无法使用
 # compress_file() {
 #   local file=$1
 #   local compressed_file=$2
