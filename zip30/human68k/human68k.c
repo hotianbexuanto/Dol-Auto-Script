@@ -31,7 +31,7 @@ local char *readd OF((DIR *));
 
 local char *readd(DIR* d)
 {
-   struct direct* e = readdir(d);
+   struct dirent* e = readdir(d);
 
    return e == NULL ? NULL : e->d_name;
 }

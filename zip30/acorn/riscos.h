@@ -53,7 +53,7 @@ typedef struct {
 
 #define dstrm DIR
 
-struct direct {
+struct dirent {
   unsigned int d_off;          /* offset of next disk directory entry */
   int d_fileno;                /* file number of entry */
   size_t d_reclen;             /* length of this record */
@@ -99,7 +99,7 @@ extern char *exts2swap; /* Extensions to swap */
 
 int stat(char *filename,struct stat *res);
 DIR *opendir(char *dirname);
-struct direct *readdir(DIR *d);
+struct dirent *readdir(DIR *d);
 char *readd(DIR *d);
 void closedir(DIR *d);
 int unlink(char *f);

@@ -779,7 +779,7 @@ DIR *opendir(const char *dirname)
    short fnamelen;
    char *p;
    short searchid, err, end;
-   struct direct *entry;
+   struct dirent *entry;
    DIR *dirp;
    char ext[EXTENSION_MAX + 1];
    short extension;
@@ -827,7 +827,7 @@ DIR *opendir(const char *dirname)
                                    )
            ) == 0 ){
      /*  Create space for entry */
-     if ((entry = malloc (sizeof(struct direct))) == NULL) {
+     if ((entry = malloc (sizeof(struct dirent))) == NULL) {
        end = FILENAME_FINDFINISH_(searchid);
        return NULL;
      }
@@ -859,9 +859,9 @@ DIR *opendir(const char *dirname)
      return NULL;
 }
 
-struct direct *readdir(DIR *dirp)
+struct dirent *readdir(DIR *dirp)
 {
-   struct direct *cur;
+   struct dirent *cur;
 
    cur = dirp->D_curpos;
    dirp->D_curpos = dirp->D_curpos->d_next;
@@ -875,7 +875,7 @@ void rewinddir(DIR *dirp)
 
 int closedir(DIR *dirp)
 {
-   struct direct *node;
+   struct dirent *node;
 
    while (dirp->D_list != NULL) {
       node = dirp->D_list;

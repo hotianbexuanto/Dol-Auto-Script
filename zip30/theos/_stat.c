@@ -444,11 +444,11 @@ register struct fdb* fdb;
 
 /* standard diropen fails on path endung with a '/', workaround */
 
-struct direct* _opendir(const char* dirpath)
+struct dirent* _opendir(const char* dirpath)
 {
     int l;
     char dirp[FILENAME_MAX];
-    struct direct* dir;
+    struct dirent* dir;
 
     if (dirpath && (l = strlen(dirpath))) {
         if (dirpath[l - 1] == '/') {

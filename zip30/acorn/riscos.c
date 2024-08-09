@@ -132,7 +132,7 @@ DIR *opendir(char *dirname)
  return thisdir;
 }
 
-struct direct *readdir(DIR *d)
+struct dirent *readdir(DIR *d)
 {
  static struct direct dent;
 

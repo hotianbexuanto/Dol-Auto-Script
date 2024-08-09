@@ -187,9 +187,9 @@ void closedir(DIR * dirp)
   free(dirp);
 }
 
-struct direct *readdir(DIR * dirp)
+struct dirent *readdir(DIR * dirp)
 {
-  static struct direct dp;
+  static struct dirent dp;
 
   if (dirp -> dd_cp == NULL)
     return NULL;

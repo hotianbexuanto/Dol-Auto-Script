@@ -65,7 +65,7 @@ DIR *d;                 /* directory stream to read from */
 /* Return a pointer to the next name in the directory stream d, or NULL if
    no more entries or an error occurs. */
 {
-  struct direct *e;
+  struct dirent *e;
 
   e = readdir(d);
   return e == NULL ? (char *) NULL : e->d_name;

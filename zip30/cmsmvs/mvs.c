@@ -18,7 +18,7 @@ static int gen_node( DIR *dirp, RECORD *recptr )
    char *ptr, *name, ttr[TTRLEN];
    int skip, count = 2;
    unsigned int info_byte, alias, ttrn;
-   struct direct *new;
+   struct dirent *new;
 
    ptr = recptr->rest;
    while (count < recptr->count) {
@@ -30,7 +30,7 @@ static int gen_node( DIR *dirp, RECORD *recptr )
       ptr += TTRLEN;
       info_byte = (unsigned int) (*ptr);   /* info byte */
       if ( !(info_byte & ALIAS_MASK) ) {   /* no alias  */
-         new = malloc( sizeof(struct direct) );
+         new = malloc( sizeof(struct dirent) );
          if (dirp->D_list == NULL)
             dirp->D_list = dirp->D_curpos = new;
          else
@@ -75,9 +75,9 @@ DIR *opendir(const char *dirname)
    return NULL;
 }
 
-struct direct *readdir(DIR *dirp)
+struct dirent *readdir(DIR *dirp)
 {
-   struct direct *cur;
+   struct dirent *cur;
 
    cur = dirp->D_curpos;
    dirp->D_curpos = dirp->D_curpos->d_next;
@@ -91,7 +91,7 @@ void rewinddir(DIR *dirp)
 
 int closedir(DIR *dirp)
 {
-   struct direct *node;
+   struct dirent *node;
 
    while (dirp->D_list != NULL) {
       node = dirp->D_list;
@@ -107,7 +107,7 @@ DIR *d;                 /* directory stream to read from */
 /* Return a pointer to the next name in the directory stream d, or NULL if
    no more entries or an error occurs. */
 {
-  struct direct *e;
+  struct dirent *e;
 
   e = readdir(d);
   return e == NULL ? (char *) NULL : e->d_name;

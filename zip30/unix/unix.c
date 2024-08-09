@@ -75,15 +75,15 @@ typedef FILE DIR;
 
 #define opendir(path) fopen(path, "r")
 
-struct direct *readdir(dirp)
+struct dirent *readdir(dirp)
 DIR *dirp;
 {
-  static struct direct entry;
+  static struct dirent entry;
 
   if (dirp == NULL)
     return NULL;
   for (;;)
-    if (fread (&entry, sizeof (struct direct), 1, dirp) == 0)
+    if (fread (&entry, sizeof (struct dirent), 1, dirp) == 0)
       return NULL;
     else if (entry.d_ino)
       return (&entry);
@@ -98,7 +98,7 @@ DIR *d;                 /* directory stream to read from */
 /* Return a pointer to the next name in the directory stream d, or NULL if
    no more entries or an error occurs. */
 {
-  struct direct *e;
+  struct dirent *e;
 
   e = readdir(d);
   return e == NULL ? (char *) NULL : e->d_name;

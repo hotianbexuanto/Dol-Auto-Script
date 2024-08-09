@@ -62,7 +62,7 @@
 #define ENAMETOOLONG    63      /* File name too long */
 
 
-struct direct {
+struct dirent {
         char            d_name[NAME_MAX];
 };
 

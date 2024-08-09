@@ -74,8 +74,8 @@
 
 #define NAMELEN FILENAME_MAX+1+EXTENSION_MAX   /* allow for space extension */
 
-struct direct {
-   struct direct *d_next;
+struct dirent {
+   struct dirent *d_next;
    char   d_name[NAMELEN+1];
 };
 
@@ -86,7 +86,7 @@ typedef struct _DIR {
 } DIR;
 
 DIR *          opendir(const char *dirname);
-struct direct *readdir(DIR *dirp);
+struct dirent *readdir(DIR *dirp);
 void           rewinddir(DIR *dirp);
 int            closedir(DIR *dirp);
 char *         readd(DIR *dirp);

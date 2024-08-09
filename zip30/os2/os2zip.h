@@ -22,7 +22,7 @@
 #define _A_ARCHIVE  0x20
 
 
-struct direct
+struct dirent
 {
   ino_t    d_ino;                   /* a bit of a farce */
   int      d_reclen;                /* more farce */
@@ -60,7 +60,7 @@ DIR;
 
 
 extern DIR *opendir(const char *);
-extern struct direct *readdir(DIR *);
+extern struct dirent *readdir(DIR *);
 extern void seekdir(DIR *, long);
 extern long telldir(DIR *);
 extern void closedir(DIR *);
