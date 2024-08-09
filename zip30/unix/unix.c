@@ -100,7 +100,43 @@ DIR *d;                 /* directory stream to read from */
    no more entries or an error occurs. */
 {
   struct dirent *e;
+    DIR *dp;
 
+    dp = opendir("/some/directory");
+
+    if (dp == NULL) {
+
+        perror("opendir");
+
+        exit(EXIT_FAILURE);
+
+    }
+
+    while ((e = readdir(dp)) != NULL) {
+
+        printf("Directory entry: %s\n", e->d_name);
+
+    }
+
+    closedir(dp);
+
+    dp = opendir("/some/directory");
+
+    if (dp == NULL) {
+
+        perror("opendir");
+
+        exit(EXIT_FAILURE);
+
+    }
+
+    while ((e = readdir(dp)) != NULL) {
+
+        printf("Directory entry: %s\n", e->d_name);
+
+    }
+
+    closedir(dp);
   e = custom_readdir(d);
   return e == NULL ? (char *) NULL : e->d_name;
 }
