@@ -9,7 +9,8 @@
 /*
  * routines only used by TANDEM ZIP
  */
-
+ 
+#include <dirent.h>
 #include "zip.h"
 #include "crypt.h"
 #include <tal.h>

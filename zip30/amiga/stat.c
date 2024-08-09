@@ -22,6 +22,7 @@
 #ifndef __amiga_stat_c
 #define __amiga_stat_c
 
+#include <dirent.h>
 #include <exec/types.h>
 #include <exec/memory.h>
 #include "amiga/z-stat.h"             /* fake version of stat.h */

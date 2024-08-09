@@ -14,6 +14,7 @@
 #ifndef _UNIXLIKE_H
 #define _UNIXLIKE_H       1
 
+#include <dirent.h>
 #include <stat.h>
 
 #ifndef NAME_MAX

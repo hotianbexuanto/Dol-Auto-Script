@@ -20,6 +20,7 @@
 #  define __32BIT__
 #endif
 
+#include <dirent.h>
 #include "zip.h"
 
 #include <stdlib.h>

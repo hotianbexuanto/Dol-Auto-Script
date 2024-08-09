@@ -34,6 +34,7 @@
 #  define NULL 0
 #endif
 
+#include <dirent.h>
 #include <time.h>               /* the usual non-BSD time functions */
 #include <stdio.h>
 #include <sysstat.h>

@@ -9,6 +9,8 @@
 #include "zip.h"
 #include "amiga/amiga.h"
 
+#include <dirent.h>
+
 #ifndef UTIL    /* the companion #endif is a bit of ways down ... */
 
 #define utime FileDate

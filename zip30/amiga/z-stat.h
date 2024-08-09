@@ -32,6 +32,7 @@
 #  define _COMMIFMT_H  /* do not include SAS/C <sys/commifmt.h> */
 #  include <dos.h>
 #endif
+#include <dirent.h>
 #include <libraries/dos.h>
 #include <time.h>
 

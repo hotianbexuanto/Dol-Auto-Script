@@ -183,9 +183,9 @@ void closedir(DIR *dd)
     }
 }
 
-struct direct *readdir(DIR *dd)
+struct dirent *readdir(DIR *dd)
 {
-    return (ExNext(dd->d_parentlock, &dd->d_fib) ? (struct direct *)dd : NULL);
+    return (ExNext(dd->d_parentlock, &dd->d_fib) ? (struct dirent *)dd : NULL);
 }
 
 

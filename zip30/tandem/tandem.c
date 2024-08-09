@@ -10,6 +10,7 @@
  * routines common to TANDEM (ZIP and UNZIP)
  */
 
+#include <dirent.h>
 #include "zip.h"   /* This sets up ZIP / UNZIP define */
 
 #include <tal.h>

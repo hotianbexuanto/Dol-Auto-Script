@@ -17,8 +17,8 @@
 
 #ifndef UTIL    /* the companion #endif is a bit of ways down ... */
 
-#include <time.h>
 #include <dirent.h>
+#include <time.h>
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>

@@ -11,6 +11,7 @@
  */
 #include "zip.h"
 #include "mvs.h"
+#include <dirent.h>
 #include <errno.h>
 
 static int gen_node( DIR *dirp, RECORD *recptr )

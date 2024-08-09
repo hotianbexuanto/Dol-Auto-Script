@@ -9,6 +9,7 @@
 /* <dirent.h> definitions */
 
 #define NAMELEN     8
+#include <dirent.h>
 
 struct dirent {
    struct dirent *d_next;

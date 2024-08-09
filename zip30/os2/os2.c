@@ -7,6 +7,7 @@
   also may be found at:  ftp://ftp.info-zip.org/pub/infozip/license.html
 */
 #include "zip.h"
+#include <dirent.h>
 
 #ifndef UTIL    /* the companion #endif is a bit of ways down ... */
 

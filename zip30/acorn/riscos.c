@@ -8,6 +8,7 @@
 */
 /* riscos.c */
 
+#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -134,7 +135,7 @@ DIR *opendir(char *dirname)
 
 struct dirent *readdir(DIR *d)
 {
- static struct direct dent;
+ static struct dirent dent;
 
  if (d->read==0) {    /* no more objects read in the buffer */
    if (d->offset==-1) {    /* no more objects to read */

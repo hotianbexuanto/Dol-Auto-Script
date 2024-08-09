@@ -10,6 +10,7 @@
  *  Placed into the public domain
  */
 
+#include <dirent.h>
 
 #define MAXNAMLEN  256
 #define MAXPATHLEN 256

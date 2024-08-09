@@ -6,6 +6,7 @@
   If, for some reason, all these files are missing, the Info-ZIP license
   also may be found at:  ftp://ftp.info-zip.org/pub/infozip/license.html
 */
+#include <dirent.h>
 #include <stdlib.h>
 #include <string.h>
 #include "zip.h"

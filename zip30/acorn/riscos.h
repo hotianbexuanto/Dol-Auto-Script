@@ -11,6 +11,7 @@
 #ifndef __riscos_h
 #define __riscos_h
 
+#include <dirent.h>
 #include <time.h>
 #include <stdio.h>
 

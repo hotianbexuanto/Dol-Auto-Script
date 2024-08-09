@@ -7,6 +7,7 @@
   also may be found at:  ftp://ftp.cdrom.com/pub/infozip/license.html
 */
 #pragma library
+#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
