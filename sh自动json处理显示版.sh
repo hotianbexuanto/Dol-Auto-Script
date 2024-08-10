@@ -11,11 +11,12 @@ read -p "请输入游戏版本 (可选, 参考 0.0.0.1, 如果不输入则不在
 # 创建临时文件来保存目录结构
 TEMP_FILE=$(mktemp)
 
-# Function to update the progress bar
+# Function to update the progress bar and display task info
 update_progress_bar() {
     local task_name=$1
     local progress=$2
     local total=$3
+    local current_file=$4
 
     if [ "$total" -eq 0 ]; then
         percent=100
@@ -29,12 +30,10 @@ update_progress_bar() {
     local bar=$(printf "%${filled}s" | tr ' ' '#')
     bar+=$(printf "%${unfilled}s" | tr ' ' '.')
 
-    printf "\r%s [%-${width}s] %d%%" "$task_name" "$bar" "$percent"
-}
-
-# Function to print a new line after progress bar
-print_newline() {
-    printf "\n"
+    # 清除屏幕上的行，确保进度条和文件名分别显示在不同的行
+    printf "\r\033[K当前文件: %s" "$current_file"
+    printf "\n\033[K%s [%-${width}s] %d%%" "$task_name" "$bar" "$percent"
+    printf "\n\033[K正在处理: %s" "$task_name"
 }
 
 # 扫描文件和目录并显示进度条
@@ -42,14 +41,9 @@ scan_files_and_dirs() {
     local files=("$@")
     local total_files=${#files[@]}
 
-    echo -e "\n扫描文件和目录："
-    update_progress_bar "扫描文件和目录" 0 "$total_files"
-
     for ((i=0; i<total_files; i++)); do
-        echo "${files[i]}"
-        update_progress_bar "扫描文件和目录" $((i+1)) "$total_files"
+        update_progress_bar "扫描文件和目录" $((i+1)) "$total_files" "${files[i]}"
     done
-    print_newline
 }
 
 # 处理图像文件并显示进度条
@@ -65,14 +59,9 @@ process_image_files() {
     done
 
     local total_img_files=${#img_files[@]}
-    echo -e "\n处理图像文件："
-    update_progress_bar "处理图像文件" 0 "$total_img_files"
-
     for ((i=0; i<total_img_files; i++)); do
-        echo "    \"${img_files[i]}\","
-        update_progress_bar "处理图像文件" $((i+1)) "$total_img_files"
+        update_progress_bar "处理图像文件" $((i+1)) "$total_img_files" "${img_files[i]}"
     done
-    print_newline
 }
 
 # 处理其他文件并显示进度条
@@ -88,14 +77,9 @@ process_other_files() {
     done
 
     local total_other_files=${#other_files[@]}
-    echo -e "\n处理其他文件："
-    update_progress_bar "处理其他文件" 0 "$total_other_files"
-
     for ((i=0; i<total_other_files; i++)); do
-        echo "    \"${other_files[i]}\","
-        update_progress_bar "处理其他文件" $((i+1)) "$total_other_files"
+        update_progress_bar "处理其他文件" $((i+1)) "$total_other_files" "${other_files[i]}"
     done
-    print_newline
 }
 
 # 处理目录并显示进度条
@@ -111,14 +95,9 @@ process_directories() {
     done
 
     local total_dir_files=${#dir_files[@]}
-    echo -e "\n处理目录："
-    update_progress_bar "处理目录" 0 "$total_dir_files"
-
     for ((i=0; i<total_dir_files; i++)); do
-        echo "    \"${dir_files[i]}\","
-        update_progress_bar "处理目录" $((i+1)) "$total_dir_files"
+        update_progress_bar "处理目录" $((i+1)) "$total_dir_files" "${dir_files[i]}"
     done
-    print_newline
 }
 
 # 保存目录结构并显示进度条
@@ -131,7 +110,7 @@ save_directory_structure() {
     for file in "${files[@]}"; do
         if [[ "$file" == *.png || "$file" == *.jpg || "$file" == *.gif ]]; then
             img_files=$((img_files + 1))
-        elif [[ -f "$file" ]]; then
+        elif [[ -f "$file" && "$file" != *.png && "$file" != *.jpg && "$file" != *.gif ]]; then
             other_files=$((other_files + 1))
         elif [[ -d "$file" ]]; then
             dir_files=$((dir_files + 1))
@@ -141,48 +120,19 @@ save_directory_structure() {
     local save_total=$((img_files + other_files + dir_files))
     local save_processed=0
 
-    echo -e "\n保存目录结构："
-    update_progress_bar "保存目录结构" 0 "$save_total"
-
-    echo "{" > "$OUTPUT_FILE"
-    echo '  "name": "'"$NAME"'",' >> "$OUTPUT_FILE"
-    echo '  "version": "'"$VERSION"'",' >> "$OUTPUT_FILE"
-    echo '  "scriptFileList_inject_early": [],' >> "$OUTPUT_FILE"
-    echo '  "scriptFileList_earlyload": [],' >> "$OUTPUT_FILE"
-    echo '  "scriptFileList_preload": [],' >> "$OUTPUT_FILE"
-    echo '  "styleFileList": [],' >> "$OUTPUT_FILE"
-    echo '  "scriptFileList": [],' >> "$OUTPUT_FILE"
-    echo '  "tweeFileList": [],' >> "$OUTPUT_FILE"
-    echo '  "imgFileList": [' >> "$OUTPUT_FILE"
-
     for file in "${files[@]}"; do
         if [[ "$file" == *.png || "$file" == *.jpg || "$file" == *.gif ]]; then
-            echo "    \"$file\"," >> "$OUTPUT_FILE"
             save_processed=$((save_processed + 1))
-            update_progress_bar "保存目录结构" "$save_processed" "$save_total"
-        fi
-    done
-
-    echo '  ],' >> "$OUTPUT_FILE"
-    echo '  "additionFile": [' >> "$OUTPUT_FILE"
-
-    for file in "${files[@]}"; do
-        if [[ -f "$file" && "$file" != *.png && "$file" != *.jpg && "$file" != *.gif ]]; then
+            update_progress_bar "保存图像文件" "$save_processed" "$save_total" "$file"
             echo "    \"$file\"," >> "$OUTPUT_FILE"
+        elif [[ -f "$file" && "$file" != *.png && "$file" != *.jpg && "$file" != *.gif ]]; then
             save_processed=$((save_processed + 1))
-            update_progress_bar "保存目录结构" "$save_processed" "$save_total"
-        fi
-    done
-
-    echo '  ],' >> "$OUTPUT_FILE"
-    echo '  "additionBinaryFile": [],' >> "$OUTPUT_FILE"
-    echo '  "additionDir": [' >> "$OUTPUT_FILE"
-
-    for file in "${files[@]}"; do
-        if [[ -d "$file" ]]; then
+            update_progress_bar "保存其他文件" "$save_processed" "$save_total" "$file"
             echo "    \"$file\"," >> "$OUTPUT_FILE"
+        elif [[ -d "$file" ]]; then
             save_processed=$((save_processed + 1))
-            update_progress_bar "保存目录结构" "$save_processed" "$save_total"
+            update_progress_bar "保存目录" "$save_processed" "$save_total" "$file"
+            echo "    \"$file\"," >> "$OUTPUT_FILE"
         fi
     done
 
@@ -199,7 +149,6 @@ save_directory_structure() {
         echo '    {' >> "$OUTPUT_FILE"
         echo '      "modName": "GameVersion",' >> "$OUTPUT_FILE"
         echo '      "version": "'"$GAME_VERSION"'"' >> "$OUTPUT_FILE"
-        echo '    }' >> "$OUTPUT_FILE"
     fi
 
     echo '  ]' >> "$OUTPUT_FILE"
