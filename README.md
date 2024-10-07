@@ -9,7 +9,9 @@
 
 <br>
 
-## 功能
+## shell版功能
+
+### 低效率，可直接mt管理器运行，缺点不能压缩成zip文件
 
  - [x] 自定义名称，版本，ModLoader版本，游戏版本。
  - [x] 读取img文件夹
@@ -26,11 +28,21 @@
     
   - 如termux，mt管理器的侧边栏终端。
 
+## Python版
+
+### 高效率，可直接压缩成zip文件，缺点手机不可直接运行。
+### 需要使用一个终端(如termux)安装Python才能运行，或者是具有Python环境可运行脚本的软件。
+ - 修改文件扫描添加css，js，twee文件的扫描
+ - 添加选择模式
+ - 1.图片模式(png,gif文件)，
+ 
+
 <br>
 
 ## 使用教程
 
 >* 演示所使用的为mt管理器终端，方便快捷移动文件。
+使用shell版本(低效率)
 
 # 1.找到脚本下载位置
 ![img](https://github.com/hotianbexuanto/Dol-sh-Auto-Script/blob/90443e783f839b3e7c1e7fd230a8c5b4b85ba483/picture/1.jpg)
