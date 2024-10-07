@@ -1,5 +1,4 @@
-os.remove('boot.json')
-print(f'模组生成完成: {zip_name}')import os
+import os
 import json
 import zipfile
 
@@ -42,13 +41,7 @@ if game_version_input.lower() == 'y':
     if not game_version:  # 如果直接回车，则使用默认版本
         game_version = "^0.5.1.3"
 
-is_ready_to_print = True
-
-if not is_ready_to_print:
-    print("未准备完成，请稍等")
-else:
-    print(f'模组生成中请稍等...')
-
+print(f'模组生成中请稍等...')
 output_dict['scriptFileList_inject_early'] = []
 output_dict['scriptFileList_earlyload'] = []
 output_dict['scriptFileList_preload'] = []
