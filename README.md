@@ -34,9 +34,9 @@
 ### 需要使用一个终端(如termux)安装Python才能运行，或者是具有Python环境可运行脚本的软件。
  - 修改文件扫描添加css，js，twee文件的扫描
  - 添加选择模式
- - [ ] 模式1.图片模式扫描文件(png，gif)
- - [ ] 模式2.扫描文件(png，gif，css，js，twee)添加进json文件中
- 
+ - [x] 模式1.图片模式扫描文件(png，gif)
+ - [x] 模式2.扫描文件(png，gif，css，js，twee)添加进json文件中
+ - 有反馈了再添加文件(
 
 <br>
 
