@@ -1,4 +1,4 @@
-# Dol-sh-Auto-Script：Dol自动化sh脚本
+# Dol-Auto-Script：Dol自动化sh脚本
 
 <br>
 
